@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>jquery 事件 </title>
+    <script src="./myjs.js"></script>
+    <script src="./jquery-1.12.4.js"></script>
+    <style>
+        h3 {
+            color: red;
+        }
+
+        p {
+            width: 440px;
+            height: auto;
+            background-color: rgb(240, 230, 255);
+            line-height: 20px;
+            padding: 10px 20px;
+            border: 1px solid mediumpurple;
+        }
+
+        u {
+            background-color: rgb(236, 230, 252);
+            color: midnightblue;
+        }
+
+        #box1,
+        #test {
+            width: 100px;
+            height: 50px;
+            line-height: 50px;
+            font-size: 14px;
+            text-align: center;
+            background-color: mediumslateblue;
+            color: lavender;
+        }
+
+        #test {
+            padding: 0 10px;
+            margin: 0 10px;
+            border: 5px solid darkblue;
+        }
+
+        .dad {
+            width: 120px;
+            height: 60px;
+            background-color: slateblue;
+            position: relative;
+            margin: 10px;
+        }
+
+        .son {
+            width: 80px;
+            height: 30px;
+            background-color: rgb(151, 143, 201);
+            position: absolute;
+            top: 15px;
+            left: 30px;
+            font-size: 12px;
+            text-align: right;
+            color: snow;
+            line-height: 15px;
+        }
+
+        #test2,
+        #test3 {
+            width: 300px;
+            background-color: slateblue;
+            text-align: right;
+            color: white;
+            padding: 10px;
+            margin: 10px;
+        }
+
+        #test2>p,
+        #test3>p,
+        #test2>li,
+        #test3>li {
+            text-align: left;
+            background-color: unset;
+            margin: 10px;
+            padding: 0;
+            border: 0;
+            width: 60px;
+            background-color: black;
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            border: 1px solid #ccf;
+        }
+
+        th,
+        td {
+            border: 1px solid lavender;
+            color: slateblue;
+            padding: 10px;
+        }
+
+        th {
+            background-color: mediumslateblue;
+            font-size: 16px;
+            color: lavender;
+        }
+
+        td {
+            font-size: 14px;
+        }
+
+        td i.get {
+            text-decoration: none;
+        }
+
+        i.del:hover {
+            text-decoration: underline;
+        }
+
+        tbody tr {
+            background-color: #ddddff;
+        }
+
+        tbody tr:hover {
+            cursor: pointer;
+            background-color: #f7f7f7;
+        }
+
+        .btnAdd {
+            width: 110px;
+            height: 30px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .form-item {
+            height: 100%;
+            position: relative;
+            padding-left: 100px;
+            padding-right: 20px;
+            margin-bottom: 34px;
+            line-height: 36px;
+        }
+
+        .form-item>.lb {
+            position: absolute;
+            left: 0;
+            top: 0;
+            display: block;
+            width: 100px;
+            text-align: right;
+        }
+
+        .form-item>.txt {
+            width: 300px;
+            height: 32px;
+        }
+
+        .mask {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            opacity: 0.15;
+            display: none;
+        }
+
+        .form-add {
+            position: fixed;
+            top: 30%;
+            left: 50%;
+            margin-left: -197px;
+            padding-bottom: 20px;
+            background: #fff;
+            display: none;
+        }
+
+        .form-add-title {
+            background-color: #f7f7f7;
+            border-width: 1px 1px 0 1px;
+            border-bottom: 0;
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .form-add-title span {
+            width: auto;
+            height: 18px;
+            font-size: 16px;
+            font-family: ËÎÌå;
+            font-weight: bold;
+            color: rgb(102, 102, 102);
+            text-indent: 12px;
+            padding: 8px 0px 10px;
+            margin-right: 10px;
+            display: block;
+            overflow: hidden;
+            text-align: left;
+        }
+
+        .form-add-title div {
+            width: 16px;
+            height: 20px;
+            position: absolute;
+            right: 10px;
+            top: 6px;
+            font-size: 30px;
+            line-height: 16px;
+            cursor: pointer;
+        }
+
+        .form-submit {
+            text-align: center;
+        }
+
+        .form-submit input {
+            width: 170px;
+            height: 32px;
+        }
+
+        .comment {
+            font-size: 40px;
+            color: #aae;
+        }
+
+        .comment li {
+            float: left;
+            margin: 10px 1px;
+        }
+
+        .comment {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            height: 50px;
+        }
+
+        #myI {
+            color: slateblue;
+        }
+
+        .mybox {
+            width: 500px;
+            height: 120px;
+        }
+
+        .mybox li {
+            float: left;
+            width: 85px;
+            height: 50px;
+            background-color: slateblue;
+            margin: 5px;
+            list-style: none;
+            text-align: center;
+            line-height: 50px;
+            color: lavender;
+        }
+    </style>
+</head>
+
+<body>
+    <h3>val方法</h3>
+
+    沒傳參數是獲取值 有傳參數是更改值 <br><br>
+
+    <u>
+        //小案例-京東搜索:<br>
+        //默認value值為洋酒 點擊輸入框清空value值
+    </u>
+    <br><br>
+
+    <input type="text" id="txt" value="洋酒">
+
+    <script>
+        $(function () {
+            $('#txt').focus(function () {
+                if ($(this).val() === '洋酒') {
+                    $(this).val('')
+                }
+            })
+
+            $('#txt').blur(function () {
+                if ($(this).val() === '') {
+                    $(this).val('洋酒')
+                }
+            })
+        })
+    </script>
+
+    <h3>html方法與text方法</h3>
+
+    同val的用法 沒傳參數是獲取 有傳參數是更改<br><br>
+
+    <u>
+        //text相當於JS中的innerText 且沒有兼容性問題<br>
+        //html相當於JS中的innerHTML 就是帶標籤的內容<br>
+        //請看console.log打印的結果
+    </u>
+
+    <ul id="myUl">
+        <li id="myLi">click to log!</li>
+    </ul>
+
+    <script>
+        $(function () {
+            $('#myLi').click(function () {
+                console.log('我是text方法: ' + $('#myUl').text())
+                console.log('我是html方法: ' + $('#myUl').html())
+            })
+        })
+    </script>
+
+    <h3>width方法與height方法</h3>
+
+    同val的用法 沒傳參數是獲取 有傳參數是更改<br>
+    已知用css方法獲取到的是帶有單位的字符串<br>
+    但若是用width/height方法 則可直接獲取到數字<br><br>
+
+    <u>
+        //小案例-改變div寬度:<br>
+        //點擊div把其寬度改為200並console.log結果
+    </u>
+    <br><br>
+
+    <div id="box1">click to log！</div>
+
+    <script>
+        $(function () {
+            $('#box1').click(function () {
+                $(this).width(200)
+
+                console.log('我是css方法: ' + $(this).css('width'))
+                console.log('我是width方法: ' + $(this).width())
+            })
+        })
+    </script>
+
+    <h3>獲取視窗寬高的辦法(可視區域寬高)</h3>
+
+    resize方法 同JS中的onresize方法<br>
+    即是"當窗口大小發生改變時的事件"<br>
+    打開console.log並改變視窗大小看結果<br><br>
+
+    <u>
+        //window.width等同於JS中的body.clientWidth且沒有兼容性問題<br>
+        //window.height則同於JS中的body.clientHeight且沒有兼容性問題
+    </u>
+
+    <script>
+        $(function () {
+            $(window).resize(function () {
+                console.log('我是width方法: ' + $(this).width())
+                console.log('我是height方法: ' + $(this).height())
+            })
+        })
+    </script>
+
+    <h3>獲取各種寬度的方法</h3>
+
+    點擊div獲取四種寬度的值
+
+    <p>
+        * 1.單純獲取寬度 > width() <br>
+        * 2.獲取寬度+padding > innerWidth() <br>
+        * 3.獲取寬度+padding+border > outerWidth() <br>
+        * 4.獲取寬度+padding+border+margin > outerWidth(true) <br>
+    </p>
+
+    <div id="test">click to log!</div>
+
+    <script>
+        $(function () {
+            $('#test').click(function () {
+                console.log('我是width方法: ' + $(this).width())
+                console.log('我是innerWidth方法: ' + $(this).innerWidth())
+                console.log('我是outerWidth方法: ' + $(this).outerWidth()) //默認參數為false
+                console.log('我是outerWidth(true)方法: ' + $(this).outerWidth(true))
+            })
+        })
+    </script>
+
+    <h3>offset方法與position方法</h3>
+
+    兩者都是獲取元素的位置的方法<br>
+    點擊小的div獲取該元素相對於其父元素的left <br><br>
+
+    <u>
+        //offset方法是獲取該元素相對於整個文檔的位置 <br>
+        //position方法則是獲取該元素相對於其父元素的位置
+    </u>
+
+    <div class="dad">
+        <div class="son">點我console.log</div>
+    </div>
+
+    <script>
+        $(function () {
+            $('.son').click(function () {
+                console.log('我是son的position().left: ' + $(this).position().left)
+            })
+        })
+    </script>
+
+    <h3>JQuery 事件機制發展歷程</h3>
+
+    有三個p標籤和一個按鈕 點擊按鈕後添加p元素 <br>
+    我們給所有p綁定點擊事件 試試看結果 <br><br>
+
+    <u>
+        //用前面兩種方式註冊事件時 <br>
+        //新創建的元素不會被綁定事件 <br>
+        //若要綁定事件給新元素 方法有兩種: <br>
+        //A-在將其添加到父元素之前就先設置好事件 <br>
+        //B-給其父元素綁定委託/代理事件(delegate)
+    </u>
+
+    <p>
+        * 1.$('p').click(function(){}) <br>
+        此為簡單註冊事件 每次只能註冊一種事件 <br>
+        * 2.$('p').bind('click bdlclick',function(){}) <br>
+        此為綁定事件的第一種 註冊兩種事件且觸發一樣效果 <br>
+        * 3.$('p').bind({click:function(){},bdlclick:function(){}}) <br>
+        此為綁定事件的第二種 註冊兩種事件但觸發效果各不同 <br>
+        * 4.$('div').delegate('p','click',function(){}) <br>
+        此為委託/代理事件 把事件註冊在父元素身上 <br>
+        參數1-選擇器;參數2-事件類型;參數3-要執行的函數
+    </p>
+
+    <input type="button" value="添加p" id="addP">
+    <div id="test2">
+        我是div#test2
+        <p>我是p</p>
+        <p>我是p</p>
+        <p>我是p</p>
+        <li>我是li</li>
+    </div>
+
+    <script>
+        $(function () {
+            $('#addP').click(function () {
+                $('#test2').append($('<p class="aaa">new p</p>'))
+            })
+
+            // $('p').bind('click mouseenter',function(){
+            //     console.log('我是bind事件-點擊和滑鼠移入同事件')
+            // })
+
+            // $('p').bind({
+            //     click:function(){
+            //         console.log('我是bind事件-click')
+            //     },
+            //     dblclick:function(){
+            //         console.log('我是bind事件-dblclick')
+            //     }
+            // })
+
+            //這裡之所以可以給新添加的p元素也綁定事件是因為冒泡的關係
+            //我們其實是給父元素div綁定了事件 所以就算是新添加的元素也無所謂
+            //新元素是因為被點擊後的冒泡觸發到父元素綁定的委託事件
+            //然後由父元素的委託事件去判斷是否為p元素進而執行事件效果
+            $('#test2').delegate('p', 'click', function () {
+                console.log('我是delegate透過冒泡觸發的div的委託事件 且因為是p元素所以執行')
+            })
+
+            $('#test2').delegate('li', 'click', function () {
+                console.log('我是delegate透過冒泡觸發的div的委託事件 且因為是li元素所以執行')
+            })
+
+        })
+    </script>
+
+    <h3>on 註冊事件</h3>
+
+    前面介紹的三種方式因為要記得的用法太多 不推薦使用<br>
+    於是JQuery發明了on註冊事件 一個方法搞定所有需求 <br><br>
+
+    <u>
+        //當元素自己有綁定事件 且又有委託事件綁在身上時 <br>
+        //執行順序為先執行委託事件再執行自己的綁定事件
+    </u>
+
+    <p>
+        * 1. $('p').on('click',function(){}) <br>
+        用on註冊簡單事件 <br>
+        * 2. $('div').on('click','p',function(){}) <br>
+        用on註冊委託事件<br>
+        * 3. $('p').on('click bdlclick',function(){}) <br>
+        用on註冊多個事件 且觸發一樣效果<br>
+        * 4. $('p').on({click:function(){},dblclick:function(){}})<br>
+        用on註冊多個事件 且觸發不同效果
+    </p>
+
+    <input type="button" value="添加p" id="addP2">
+    <div id="test3">
+        我是div#test3
+        <p>我是p</p>
+        <p>我是p</p>
+        <p>我是p</p>
+        <li>我是li</li>
+    </div>
+
+    <script>
+        $(function () {
+            $('#addP2').on('click', function () {
+                $('#test3').append($('<p>new p</p>'))
+            })
+
+            $('#test3').on('click', function () {
+                console.log('我是on綁定在div的簡單事件，點擊p你會發現委託事件先執行了才會執行我')
+            })
+
+            $('#test3').on('click', 'p', function () {
+                console.log('我是on透過冒泡觸發的div的委託事件 且因為是p元素所以執行')
+            })
+
+            $('#test3').on('click', 'li', function () {
+                console.log('我是on透過冒泡觸發的div的委託事件 且因為是li元素所以執行')
+            })
+
+            // $('#test3>p').on('click mouseenter', function () {
+            //     console.log('我是on綁定點擊加滑鼠移入 觸發同事件')
+            // })
+
+            // $('#test3>p').on({
+            //     click: function () {
+            //         console.log('我是on一次綁定兩事件的click')
+            //     },
+            //     dblclick: function () {
+            //         console.log('我是on一次綁定兩事件的dblclick')
+            //     }
+            // })
+        })
+    </script>
+
+    <h3>委託事件案例：表格刪除</h3>
+
+    有一個表格和三種按鈕 清空/添加/刪除 <br><br>
+
+    <div class="wrap">
+        <input type="button" value="清空" id="btn">
+        <input type="button" value="添加" id="btnAdd">
+        <table>
+            <thead>
+                <tr>
+                    <th>課程</th>
+                    <th>學院</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody id="j_tb">
+                <tr>
+                    <td>JavaScript</td>
+                    <td>傳智博客-前端與移動開發學院</td>
+                    <td><i class="get">刪除</i></td>
+                </tr>
+                <tr>
+                    <td>css</td>
+                    <td>傳智博客-前端與移動開發學院</td>
+                    <td><i class="get">刪除</i></td>
+                </tr>
+                <tr>
+                    <td>html</td>
+                    <td>傳智博客-前端與移動開發學院</td>
+                    <td><i class="get">刪除</i></td>
+                </tr>
+                <tr>
+                    <td>jQuery</td>
+                    <td>傳智博客-前端與移動開發學院</td>
+                    <td><i class="get">刪除</i></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        $(function () {
+            $('#btn').on('click', function () {
+                $('#j_tb').empty()
+            })
+
+            $('#j_tb').on('click', '.get', function () {
+                $(this).parent().parent().remove()
+            })
+
+            $('#btnAdd').on('click', function () {
+                $('#j_tb').append(`
+                <tr>
+                    <td>前端課程</td>
+                    <td>奇奇怪怪-前端與移動開發學院</td>
+                    <td><i class="get">刪除</i></td>
+                </tr>`)
+            })
+        })
+    </script>
+
+    <h3>移除事件綁定</h3>
+
+    <u>
+        //以前用bind/delegate綁定時 > unbind/undelegate <br>
+        //現在用on綁定時 > off 當不傳參時即表示解綁所有事件
+    </u>
+
+    <p>
+        假設我們給p綁定了click和dblclick事件<br>
+        $('p').off('click') > 移除click事件 <br>
+        $('p').off() > 移除所有事件(click和dblclick)
+    </p>
+
+    <h3>觸發事件</h3>
+
+    給按鈕添加點擊事件 給輸入框註冊鍵盤事件 <br>
+    當鍵盤事件觸發(點擊enter)就讓按鈕的點擊事件觸發 <br><br>
+
+    <u>
+        //觸發事件使用trigger方法 參數為想觸發的事件
+    </u>
+
+    <br><br>
+
+    <input type="text" id="text">
+    <input type="button" value="創建" id="add">
+    <div class="myli"></div>
+
+    <script>
+        $(function () {
+            $('#add').on('click', function () {
+                $('.myli').append($('<li>' + $('#text').val() + '</li>'))
+            })
+
+            $('#text').on('keydown', function (e) {
+                if (e.keyCode == 13) {
+                    $('#add').trigger('click')
+                }
+            })
+        })
+    </script>
+
+    <h3>JQuery事件對象</h3>
+
+    JQ的事件對象同JS的事件對象 只是沒有兼容性問題<br>
+    假設有一個變量num為1 在事件觸發後num值改變了<br>
+    但是在事件中我們想獲取改變前的值 就可使用e.data
+
+    <p>
+        * 1.e.data 存儲事件傳遞的數據 <br>
+        當你有一個即將被改變的變量 而你想要獲取此變量最開始的值 <br>
+        可以在註冊事件時傳入data參數 並通過e.data獲取值<br>
+        * 2.e.preventDefault()/return false <br>
+        以上為阻止默認行為(右鍵/a標籤的跳轉)的兩種方法 <br>
+        * 3.e.stopPropagation()/return false <br>
+        以上為阻止冒泡事件的兩種方法
+    </p>
+
+    <i id="myI">點我console.log看e.data</i>
+
+    <script>
+        $(function () {
+            var num = 1
+            $('#myI').on('click', num, function (e) {
+                console.log('我是e.data: ' + e.data)
+                console.log('我是變量num: ' + num)
+            })
+            num = 100
+        })
+    </script>
+
+    <h3>鏈式編程中的end方法-五星評分案例：</h3>
+
+    在JQ中有鏈式編程 可以讓你一個方法接一個方法一直套用下去<br>
+    但是每當你使用JQ對象去設置各種東西 它返回的就不一定是原本的JQ對象了<br>
+    這時候若是你想繼續鏈式 就必須讓它返回原本的JQ對象<br>
+    此時就可以使用end方法 end方法可以用來返回上一個狀態<br><br>
+
+    <u>
+        //在JQ中當對象調用方法後發生改變 此對象就會被存進prevObject裡面 <br>
+        //ex:Ａ調用了next方法 此時返回的對象是next 而Ａ則被存放到prevObject裡面 <br>
+        //若你想繼續用Ａ鏈式下去 就可以調用end方法獲取到next的prevObject
+    </u>
+    <br>
+
+    <p>
+        以此五星案例來說 我們在設置值的時候調用了prevAll<br>
+        這時返回的就不是原先的this了 而是prevAll <br>
+        後面當我們要使用nextAll時就必須調用end來取得this <br>
+        否則就無法繼續鏈式下去 只能重新呼叫JQ的this對象
+    </p>
+
+    <ul class="comment">
+        <li>☆</li>
+        <li>☆</li>
+        <li>☆</li>
+        <li>☆</li>
+        <li>☆</li>
+    </ul>
+
+    <script>
+        $(function () {
+            var unbright = "☆"
+            var bright = "★"
+
+            $('.comment li').on({
+                mouseenter: function () {
+                    //沒有調用end方法時必須重新呼叫this
+                    // $(this).text(bright).prevAll().text(bright)
+                    // $(this).nextAll().text(unbright)
+
+                    //想直接鏈式下去就調用end方法返回前一個對象
+                    $(this).text(bright).prevAll().text(bright).end().nextAll().text(unbright)
+                },
+                mouseleave: function () {
+                    if ($('.comment li').hasClass('clicked')) {
+                        $('li.clicked').text(bright).prevAll().text(bright)
+                        $('li.clicked').nextAll().text(unbright)
+                    } else {
+                        $('.comment li').text(unbright)
+                    }
+                },
+                click: function () {
+                    $(this).addClass('clicked').siblings().removeClass('clicked')
+                }
+            })
+        })
+    </script>
+
+    <h3>each方法</h3>
+
+    each方法是除了for循環外 遍歷JQ對象的方法 <br> 
+    小案例：有十個li 讓它的透明度依序為0.1~1 <br><br>
+
+    <u>
+        //在each的函數中記得必須把el轉JQ對象使用
+
+    </u>
+
+    <p>
+        $('li').each(function(index,el){ $(el).... }) <br>
+        參數1 > index: li的下標 <br> 
+        參數2 > el: 對應li下標的DOM對象 <br>
+    </p>
+
+    <div class="mybox">
+        <li>你看不見我</li>
+        <li>你看不見我</li>
+        <li>你看不見我</li>
+        <li>你看不見我</li>
+        <li>你看不見我</li>
+        <li>你看不見我</li>
+        <li>你看不見我</li>
+        <li>你看不見我</li>
+        <li>你看不見我</li>
+        <li>你看不見我</li>
+    </div>
+
+    <script>
+        $(function(){
+            $('.mybox li').each(function(index,el){
+                $(el).css('opacity',(index+1)/10)
+            })
+        })
+    </script>
+
+    <h3>JQuery 中的$ 衝突問題</h3>
+
+    當有別的引用文件也使用$符號時 JQuery可以釋放$的控制權 <br><br>
+
+    <u>
+        //必須把JQuery文件放在最後引入 讓JQuery擁有$的控制權 
+    </u>
+
+    <p>
+        然後直接調用 $.noConflict()方法 釋放$的控制權 <br> 
+        此時$就不再是JQuery的 而會變成別的文件中的對象 <br> 
+        而我們在使用JQuery時 就可把'$'改寫為'jQuery'來使用 <br>
+        或者我們也可以定義一個任意的新變量取代$的控制權 <br> 
+        比如 var _$ = $.noConflict() <br>
+        此時JQuery的$即為變量_$ 而$符號即為其他文件中的對象
+    </p>
+
+
+</body>
+
+</html>
